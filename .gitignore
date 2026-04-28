@@ -1,10 +1,79 @@
-# Python-generated files
-__pycache__/
-*.py[oc]
-build/
-dist/
-wheels/
-*.egg-info
+# Blog Writing Agent — .gitignore
 
-# Virtual environments
-.venv
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+
+# Virtual env
+venv/
+.venv/
+env/
+.env/
+ENV/
+env.bak/
+venv.bak/
+.python-version
+
+# Environment Variables
+.env
+.env.*
+!.env.example       
+*.pem
+*.key
+secrets.json
+secrets.yaml
+
+
+
+
+# IDE
+.vscode/
+.idea/
+.cursor/
+*.swp
+*~
+*.code-workspace
+
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+.AppleDouble
+.LSOverride
+
+
+# Generated blog posts located here
+outputs/
+!outputs/.gitkeep
+
+# Logs & CrewAI cache
+logs/
+*.log
+*.log.*
+log/
+.crewai/
+test-results/
+
+
+
+# Tests
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+*.ipynb
+
+
+# Misc
+*.bak
+*.tmp
+*.temp
+.cache/
