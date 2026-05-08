@@ -1,13 +1,14 @@
-import os 
+import os
 from dotenv import load_dotenv
-from langchain_openai import ChatOpenAI
 
 load_dotenv()
 
-def get_llm():
-    return ChatOpenAI(
-        model="google/gemma-4-31b-it:free",
-        base_url="https://openrouter.ai/api/v1",
-        api_key=os.getenv("OPENROUTER_API_KEY"),
-        temperature = 0.7
-    )
+MODEL_NAME     = os.environ["MODEL_NAME"]
+MODEL_PROVIDER = os.environ["MODEL_PROVIDER"]
+API_KEY        = os.environ.get("API_KEY", "")
+BASE_URL       = os.environ.get("BASE_URL") or None  # None = use provider default
+
+MIN_SECTIONS           = 5
+MAX_SECTIONS           = 7
+OUTPUT_DIR             = "outputs"
+MAX_CONCURRENT_WORKERS = 4
