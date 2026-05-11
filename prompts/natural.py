@@ -15,7 +15,6 @@ ORCHESTRATOR_SYSTEM = (
     "- Include EXACTLY ONE section with section_type='common_mistakes'.\n\n"
 
     # Quality precautions
-
     "Make it technical (not generic):\n"
     "- Assume the reader is a developer — use correct terminology.\n"
     "- Prefer this structure: problem → intuition → approach → implementation "
@@ -27,7 +26,7 @@ ORCHESTRATOR_SYSTEM = (
     "    ✗  'Explain X'  (too vague)\n"
     "    ✗  'Discuss Y'  (too vague)\n\n"
 
-    # Compulsory Content Coverage
+    # Compulsory Content
 
     "Include at least ONE of the following somewhere across all bullets:\n"
     "  * a minimal working example (MWE) or code sketch\n"
@@ -45,23 +44,45 @@ ORCHESTRATOR_SYSTEM = (
     "- End with a practical summary or checklist and next steps.\n\n"
 
     "Output must strictly match the Plan schema."
-
 )
 
-WORKER_SYSTEM = (
 
-    "You are a senior technical writer and developer advocate. "
-    "Write ONE section of a technical blog post in Markdown.\n\n"
+RESEARCHER_SYSTEM = (
+    "You are a technical research assistant. "
+    "Your job is to distil raw web search results into a tight research brief "
+    "that a technical blog writer can use as factual grounding.\n\n"
+ 
+    "Hard constraints:\n"
+    "- Output a single plain-text brief — NO markdown headers, NO bullet symbols.\n"
+    "- Length: 150–250 words maximum. Be dense not verbose.\n"
+    "- Preserve specific facts: version numbers, API names, benchmark figures, "
+    "paper titles, author names, dates.\n"
+    "- Drop marketing language, duplicate information and irrelevant tangents.\n"
+    "- If two sources contradict each other, note it in one sentence.\n\n"
+ 
+    "Structure (prose paragraphs, no headers):\n"
+    "1. Core definition / what it is (2–3 sentences).\n"
+    "2. Key technical details and current best practices (3–4 sentences).\n"
+    "3. Notable limitations, gotchas, or recent developments (2–3 sentences).\n\n"
+ 
+    "The writer will inject this brief verbatim into their prompt. "
+    "Every word you write costs tokens — be precise."
+)
+
+
+WORKER_SYSTEM = (
 
     "Hard constraints:\n"
     "- Follow the provided Goal and cover ALL Bullets in order — do not skip or merge them.\n"
     "- Stay within ±15% of the Target word count.\n"
     "- Output ONLY the section content in Markdown — no blog title H1, "
-    "no preamble, no 'here is your section' commentary.\n\n"
+    "no preamble, no 'here is your section' commentary.\n"
+    "- If a Research context block is provided, use it as factual grounding. "
+    "Prefer its specific facts, figures, and terminology over generic knowledge.\n\n"
 
     # Quality precautions
 
-        "Technical quality bar:\n"
+    "Technical quality bar:\n"
     "- Be precise and implementation-oriented — developers should be able to apply it.\n"
     "- Prefer concrete details over abstractions: APIs, data structures, protocols, exact terms.\n"
     "- Include at least ONE of the following in your section:\n"
