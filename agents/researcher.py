@@ -19,7 +19,7 @@ from langchain_core.messages import HumanMessage, SystemMessage
 from langchain.chat_models import init_chat_model
  
 from config.settings import API_KEY, BASE_URL, MODEL_NAME, MODEL_PROVIDER
-from prompts.natural import RESEARCHER_SYSTEM
+from prompts.loader import prompts
 from tools.search import search
 from workflow.state import State
 
@@ -82,7 +82,7 @@ def researcher(state: State) -> dict:
     # Step 2 - summarise into a usable research brief
     summary: str = llm.invoke(
         [
-            SystemMessage(content=RESEARCHER_SYSTEM),
+            SystemMessage(content = prompts.researcher),
             HumanMessage(
                 content=(
                     f"Topic: {search_query}\n\n"
